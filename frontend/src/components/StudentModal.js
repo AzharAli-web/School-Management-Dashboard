@@ -21,7 +21,7 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
     if (studentToEdit) {
       setFormData({
         ...studentToEdit,
-        password: "" // Don't populate password for editing
+        password: ""
       });
     } else {
       setFormData({
@@ -65,10 +65,10 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
             {studentToEdit ? "Update the student details below." : "Enter the details to enroll a new student and generate their login account."}
           </DialogDescription>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-6 max-h-[70vh] overflow-y-auto px-1 py-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Basic Info */}
+
             <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
               <Input id="name" value={formData.name} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
@@ -77,20 +77,20 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" value={formData.email} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
             </div>
-            
+
             {!studentToEdit && (
               <div className="space-y-2">
                 <Label htmlFor="password">Temporary Password</Label>
                 <Input id="password" type="password" value={formData.password} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
               </div>
             )}
-            
+
             <div className="space-y-2">
               <Label htmlFor="rollNumber">Roll Number</Label>
               <Input id="rollNumber" value={formData.rollNumber} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
             </div>
 
-            {/* Class Details */}
+
             <div className="space-y-2">
               <Label htmlFor="class">Class</Label>
               <Input id="class" value={formData.class} onChange={handleChange} required placeholder="e.g. 10th Grade" className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
@@ -100,7 +100,7 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
               <Input id="section" value={formData.section} onChange={handleChange} required placeholder="e.g. A" className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
             </div>
 
-            {/* Personal Details */}
+
             <div className="space-y-2">
               <Label htmlFor="age">Age</Label>
               <Input id="age" type="number" value={formData.age} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
@@ -118,8 +118,8 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
                 </SelectContent>
               </Select>
             </div>
-            
-            {/* Contact Details */}
+
+
             <div className="space-y-2">
               <Label htmlFor="phone">Phone</Label>
               <Input id="phone" value={formData.phone} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
@@ -129,7 +129,7 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
               <Input id="address" value={formData.address} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
             </div>
 
-            {/* Parent Details */}
+
             <div className="space-y-2">
               <Label htmlFor="parentName">Parent/Guardian Name</Label>
               <Input id="parentName" value={formData.parentName} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
@@ -139,7 +139,7 @@ export default function StudentModal({ isOpen, onClose, studentToEdit, onSuccess
               <Input id="parentPhone" value={formData.parentPhone} onChange={handleChange} required className="bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800" />
             </div>
           </div>
-          
+
           <DialogFooter className="pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-6">
             <Button type="button" variant="ghost" onClick={onClose} disabled={loading}>
               Cancel

@@ -3,13 +3,13 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { 
-  ArrowLeft, Users, GraduationCap, Calendar, 
+import {
+  ArrowLeft, Users, GraduationCap, Calendar,
   BookOpen, Mail, Phone, Shield, BarChart2,
   TrendingUp, Award, Clock
 } from "lucide-react";
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, LineChart, Line, AreaChart, Area
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -85,11 +85,11 @@ export default function ClassDetailsPage({ params }) {
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
-      {/* Header */}
+
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <Link 
-            href="/classes" 
+          <Link
+            href="/classes"
             className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800")}
           >
             <ArrowLeft className="w-5 h-5" />
@@ -115,15 +115,15 @@ export default function ClassDetailsPage({ params }) {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         variants={container}
         initial="hidden"
         animate="show"
         className="grid grid-cols-1 lg:grid-cols-3 gap-8"
       >
-        {/* Left: Overview & Students */}
+
         <motion.div variants={item} className="lg:col-span-2 space-y-8">
-          {/* Quick Stats */}
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: "Total Students", value: classData.students?.length || 0, icon: Users, color: "text-blue-500" },
@@ -132,18 +132,18 @@ export default function ClassDetailsPage({ params }) {
               { label: "Avg. Attendance", value: "94%", icon: TrendingUp, color: "text-rose-500" },
             ].map((stat, i) => (
               <Card key={i} className="border-none shadow-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur rounded-2xl overflow-hidden group">
-                 <CardContent className="p-4 flex flex-col items-center justify-center text-center">
-                    <div className={cn("p-2 rounded-xl mb-2 bg-zinc-50 dark:bg-zinc-800 group-hover:scale-110 transition-transform", stat.color)}>
-                      <stat.icon className="w-5 h-5" />
-                    </div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">{stat.label}</p>
-                    <p className="text-xl font-bold mt-1">{stat.value}</p>
-                 </CardContent>
+                <CardContent className="p-4 flex flex-col items-center justify-center text-center">
+                  <div className={cn("p-2 rounded-xl mb-2 bg-zinc-50 dark:bg-zinc-800 group-hover:scale-110 transition-transform", stat.color)}>
+                    <stat.icon className="w-5 h-5" />
+                  </div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">{stat.label}</p>
+                  <p className="text-xl font-bold mt-1">{stat.value}</p>
+                </CardContent>
               </Card>
             ))}
           </div>
 
-          {/* Students Table */}
+
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] overflow-hidden bg-white dark:bg-zinc-900">
             <CardHeader className="p-8 border-b border-zinc-100 dark:border-zinc-800/50">
               <CardTitle className="text-xl font-bold flex items-center gap-2">
@@ -189,7 +189,7 @@ export default function ClassDetailsPage({ params }) {
             </CardContent>
           </Card>
 
-          {/* Performance Chart */}
+
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] bg-white dark:bg-zinc-900">
             <CardHeader className="p-8">
               <CardTitle className="text-xl font-bold flex items-center gap-2">
@@ -204,14 +204,14 @@ export default function ClassDetailsPage({ params }) {
                   <AreaChart data={performanceData}>
                     <defs>
                       <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#18181b" stopOpacity={0.1}/>
-                        <stop offset="95%" stopColor="#18181b" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#18181b" stopOpacity={0.1} />
+                        <stop offset="95%" stopColor="#18181b" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#88888820" />
                     <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
                     <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} domain={[0, 100]} />
-                    <Tooltip 
+                    <Tooltip
                       contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                     />
                     <Area type="monotone" dataKey="score" stroke="#18181b" fillOpacity={1} fill="url(#colorScore)" strokeWidth={3} />
@@ -222,79 +222,78 @@ export default function ClassDetailsPage({ params }) {
           </Card>
         </motion.div>
 
-        {/* Right: Sidebar Info */}
+
         <motion.div variants={item} className="space-y-8">
-          {/* Class Teacher */}
+
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] overflow-hidden bg-white dark:bg-zinc-900">
-             <div className="h-24 bg-gradient-to-r from-primary to-indigo-600 relative">
-               <Avatar className="w-20 h-20 border-4 border-white dark:border-zinc-950 absolute -bottom-10 left-8 shadow-lg">
-                 <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold">
-                    {classData.teacher?.name ? classData.teacher.name.charAt(0) : "T"}
-                 </AvatarFallback>
-               </Avatar>
-             </div>
-             <CardContent className="pt-14 pb-8 px-8">
-                <h3 className="text-xl font-bold">Class Teacher</h3>
-                <p className="text-primary font-medium mb-4">{classData.teacher?.name || "Not Assigned"}</p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-zinc-500">
-                    <Mail className="w-4 h-4" />
-                    <span>{classData.teacher?.email}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-zinc-500">
-                    <Phone className="w-4 h-4" />
-                    <span>{classData.teacher?.phone}</span>
-                  </div>
+            <div className="h-24 bg-gradient-to-r from-primary to-indigo-600 relative">
+              <Avatar className="w-20 h-20 border-4 border-white dark:border-zinc-950 absolute -bottom-10 left-8 shadow-lg">
+                <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold">
+                  {classData.teacher?.name ? classData.teacher.name.charAt(0) : "T"}
+                </AvatarFallback>
+              </Avatar>
+            </div>
+            <CardContent className="pt-14 pb-8 px-8">
+              <h3 className="text-xl font-bold">Class Teacher</h3>
+              <p className="text-primary font-medium mb-4">{classData.teacher?.name || "Not Assigned"}</p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-sm text-zinc-500">
+                  <Mail className="w-4 h-4" />
+                  <span>{classData.teacher?.email}</span>
                 </div>
-                <Button variant="outline" className="w-full mt-6 rounded-xl font-bold border-zinc-200 dark:border-zinc-800">
-                  Message Teacher
-                </Button>
-             </CardContent>
+                <div className="flex items-center gap-3 text-sm text-zinc-500">
+                  <Phone className="w-4 h-4" />
+                  <span>{classData.teacher?.phone}</span>
+                </div>
+              </div>
+              <Button variant="outline" className="w-full mt-6 rounded-xl font-bold border-zinc-200 dark:border-zinc-800">
+                Message Teacher
+              </Button>
+            </CardContent>
           </Card>
 
-          {/* Subjects */}
+
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] bg-white dark:bg-zinc-900 p-8">
-             <CardHeader className="p-0 mb-6">
-               <CardTitle className="text-xl font-bold flex items-center gap-2">
-                 <BookOpen className="w-5 h-5 text-amber-500" />
-                 Course Curriculum
-               </CardTitle>
-             </CardHeader>
-             <div className="space-y-4">
-               {classData.subjects?.map((subject, i) => (
-                 <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-100 dark:border-zinc-800 hover:border-primary/20 transition-all cursor-pointer group">
-                   <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 flex items-center justify-center font-bold text-xs">
-                        {i + 1}
-                      </div>
-                      <span className="font-bold text-sm group-hover:text-primary transition-colors">{subject}</span>
-                   </div>
-                   <ChevronRight className="w-4 h-4 text-zinc-300 group-hover:text-primary transition-colors" />
-                 </div>
-               ))}
-             </div>
+            <CardHeader className="p-0 mb-6">
+              <CardTitle className="text-xl font-bold flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-amber-500" />
+                Course Curriculum
+              </CardTitle>
+            </CardHeader>
+            <div className="space-y-4">
+              {classData.subjects?.map((subject, i) => (
+                <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-100 dark:border-zinc-800 hover:border-primary/20 transition-all cursor-pointer group">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 flex items-center justify-center font-bold text-xs">
+                      {i + 1}
+                    </div>
+                    <span className="font-bold text-sm group-hover:text-primary transition-colors">{subject}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-zinc-300 group-hover:text-primary transition-colors" />
+                </div>
+              ))}
+            </div>
           </Card>
 
-          {/* Timetable Snippet */}
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] bg-zinc-900 text-white p-8">
-             <div className="flex items-center justify-between mb-6">
-               <div className="flex items-center gap-2">
-                 <Clock className="w-5 h-5 text-primary" />
-                 <h3 className="font-bold text-lg">Next Period</h3>
-               </div>
-               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Starts in 15m</span>
-             </div>
-             <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
-                <p className="text-2xl font-bold">Physics</p>
-                <p className="text-zinc-400 text-sm mt-1">with Prof. Sarah Smith</p>
-                <div className="mt-4 flex items-center gap-2">
-                  <Award className="w-4 h-4 text-primary" />
-                  <span className="text-xs font-medium">Room 304 • Block B</span>
-                </div>
-             </div>
-             <Button className="w-full mt-6 rounded-xl bg-white text-black hover:bg-white/90 font-bold">
-               Full Timetable
-             </Button>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-primary" />
+                <h3 className="font-bold text-lg">Next Period</h3>
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Starts in 15m</span>
+            </div>
+            <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
+              <p className="text-2xl font-bold">Physics</p>
+              <p className="text-zinc-400 text-sm mt-1">with Prof. Sarah Smith</p>
+              <div className="mt-4 flex items-center gap-2">
+                <Award className="w-4 h-4 text-primary" />
+                <span className="text-xs font-medium">Room 304 • Block B</span>
+              </div>
+            </div>
+            <Button className="w-full mt-6 rounded-xl bg-white text-black hover:bg-white/90 font-bold">
+              Full Timetable
+            </Button>
           </Card>
         </motion.div>
       </motion.div>

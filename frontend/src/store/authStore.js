@@ -3,7 +3,7 @@ import api from "../lib/axios";
 
 export const useAuthStore = create((set) => ({
   user: null,
-  token: null, // Initialize as null to avoid hydration mismatch
+  token: null,
   isLoading: false,
   error: null,
 
@@ -55,7 +55,7 @@ export const useAuthStore = create((set) => ({
       set({ user: null, token: null, isLoading: false });
     }
   },
-  
+
   initialize: () => {
     const token = localStorage.getItem("token");
     if (token) {

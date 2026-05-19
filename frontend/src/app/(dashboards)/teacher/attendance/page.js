@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  Calendar, 
-  Search, 
-  CheckCircle2, 
-  XCircle, 
-  Clock, 
+import {
+  Calendar,
+  Search,
+  CheckCircle2,
+  XCircle,
+  Clock,
   Save,
   ChevronRight,
   Filter
@@ -28,8 +28,8 @@ export default function TeacherAttendancePage() {
     try {
       const { data } = await api.get(`/students?class=${className}`);
       setStudents(data.students || []);
-      
-      // Initialize attendance with 'Present' as default for all
+
+
       const initialAttendance = {};
       if (data.students && Array.isArray(data.students)) {
         data.students.forEach(s => {
@@ -98,8 +98,8 @@ export default function TeacherAttendancePage() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-            <input 
-              type="date" 
+            <input
+              type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="pl-10 pr-4 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all"
@@ -107,7 +107,7 @@ export default function TeacherAttendancePage() {
           </div>
           <div className="relative">
             <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-            <select 
+            <select
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               className="pl-10 pr-8 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:ring-2 focus:ring-primary outline-none appearance-none transition-all"
@@ -120,8 +120,8 @@ export default function TeacherAttendancePage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <motion.div 
+
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -138,15 +138,15 @@ export default function TeacherAttendancePage() {
             </thead>
             <tbody className="divide-y divide-zinc-100 dark:divide-zinc-900">
               {loading ? (
-                [1,2,3].map(i => (
+                [1, 2, 3].map(i => (
                   <tr key={i} className="animate-pulse">
                     <td colSpan="3" className="px-6 py-8 bg-zinc-50/20 dark:bg-zinc-900/20"></td>
                   </tr>
                 ))
               ) : (
                 students.map((student) => (
-                  <motion.tr 
-                    key={student._id} 
+                  <motion.tr
+                    key={student._id}
                     variants={itemVariants}
                     className="hover:bg-zinc-50/50 dark:hover:bg-zinc-900/50 transition-colors"
                   >
@@ -174,11 +174,10 @@ export default function TeacherAttendancePage() {
                           <button
                             key={status.id}
                             onClick={() => handleStatusChange(student._id, status.id)}
-                            className={`p-2 rounded-xl border transition-all flex items-center gap-2 ${
-                              attendance[student._id] === status.id 
-                                ? `${status.bg} ${status.border} ${status.color} shadow-sm ring-1 ring-inset ring-current/20` 
+                            className={`p-2 rounded-xl border transition-all flex items-center gap-2 ${attendance[student._id] === status.id
+                                ? `${status.bg} ${status.border} ${status.color} shadow-sm ring-1 ring-inset ring-current/20`
                                 : 'border-zinc-100 dark:border-zinc-800 text-zinc-400 grayscale hover:grayscale-0'
-                            }`}
+                              }`}
                           >
                             <status.icon className="w-5 h-5" />
                             <span className="text-xs font-semibold hidden sm:inline">{status.id}</span>

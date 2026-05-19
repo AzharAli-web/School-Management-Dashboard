@@ -1,6 +1,4 @@
-/**
- * Opens a print-friendly report so the user can save as PDF from the browser print dialog.
- */
+
 export function printResultReport({ result, studentName }) {
   const exam = result.examId;
   const examName = exam?.examName ?? "Examination";

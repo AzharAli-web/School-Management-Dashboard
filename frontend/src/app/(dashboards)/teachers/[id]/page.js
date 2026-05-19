@@ -72,7 +72,7 @@ export default function TeacherProfilePage({ params }) {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
-      {/* Page Header */}
+
       <div className="flex items-center gap-4">
         <Link href="/teachers" className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "rounded-full")}>
           <ArrowLeft className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default function TeacherProfilePage({ params }) {
         animate="show"
         className="grid grid-cols-1 lg:grid-cols-3 gap-6"
       >
-        {/* Left: Identity Card */}
+
         <motion.div variants={item} className="space-y-6">
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <div className="h-32 bg-gradient-to-r from-emerald-500/40 to-blue-500/40 relative">
@@ -128,7 +128,7 @@ export default function TeacherProfilePage({ params }) {
           </Card>
         </motion.div>
 
-        {/* Right: Details */}
+
         <motion.div variants={item} className="lg:col-span-2 space-y-6">
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-sm">
             <CardHeader>

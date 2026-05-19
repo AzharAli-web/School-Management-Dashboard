@@ -15,7 +15,7 @@ import api from "@/lib/axios";
 import Link from "next/link";
 
 export default function StudentProfilePage({ params }) {
-  // In Next.js 15 App router, params is a Promise that must be unwrapped
+
   const resolvedParams = use(params);
   const { id } = resolvedParams;
 
@@ -24,7 +24,7 @@ export default function StudentProfilePage({ params }) {
   const { user } = useAuthStore();
   const router = useRouter();
 
-  // Protect route - Admin Only
+
   useEffect(() => {
     if (user && user.role !== "admin") {
       router.replace(`/${user.role}/dashboard`);
@@ -89,13 +89,13 @@ export default function StudentProfilePage({ params }) {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         variants={container}
         initial="hidden"
         animate="show"
         className="grid grid-cols-1 lg:grid-cols-3 gap-6"
       >
-        {/* Left Column: Personal Info Card */}
+
         <motion.div variants={item} className="space-y-6">
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <div className="h-32 bg-gradient-to-r from-primary/40 to-emerald-500/40 relative">
@@ -108,7 +108,7 @@ export default function StudentProfilePage({ params }) {
             <CardContent className="pt-16 pb-6 px-6">
               <h2 className="text-2xl font-bold">{student.name}</h2>
               <p className="text-primary font-medium">{student.rollNumber}</p>
-              
+
               <div className="mt-6 space-y-4">
                 <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
                   <Mail className="w-4 h-4 text-zinc-400" />
@@ -131,7 +131,7 @@ export default function StudentProfilePage({ params }) {
           </Card>
         </motion.div>
 
-        {/* Right Column: Details & Performance */}
+
         <motion.div variants={item} className="lg:col-span-2 space-y-6">
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-sm">
             <CardHeader>
@@ -199,11 +199,11 @@ export default function StudentProfilePage({ params }) {
               <CardDescription>Metrics are currently running in placeholder mode.</CardDescription>
             </CardHeader>
             <CardContent>
-               <div className="flex flex-col items-center justify-center p-8 text-zinc-500 bg-zinc-50 dark:bg-zinc-900/50 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800">
-                 <Activity className="w-8 h-8 mb-3 opacity-50" />
-                 <p className="font-medium text-zinc-600 dark:text-zinc-400">Attendance Module Not Connected</p>
-                 <p className="text-sm mt-1">This section will show real-time attendance graphs and exam results soon.</p>
-               </div>
+              <div className="flex flex-col items-center justify-center p-8 text-zinc-500 bg-zinc-50 dark:bg-zinc-900/50 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800">
+                <Activity className="w-8 h-8 mb-3 opacity-50" />
+                <p className="font-medium text-zinc-600 dark:text-zinc-400">Attendance Module Not Connected</p>
+                <p className="text-sm mt-1">This section will show real-time attendance graphs and exam results soon.</p>
+              </div>
             </CardContent>
           </Card>
 

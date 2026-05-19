@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  BookOpen, Plus, Search, Filter, MoreHorizontal, 
+import {
+  BookOpen, Plus, Search, Filter, MoreHorizontal,
   Users, GraduationCap, Layout, ChevronRight, Download,
   Loader2, Trash2, Edit3, Eye
 } from "lucide-react";
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area
 } from "recharts";
 import { toast } from "sonner";
@@ -18,8 +18,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { 
-  Table, TableBody, TableCell, TableHead, TableHeader, TableRow 
+import {
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow
 } from "@/components/ui/table";
 import {
   DropdownMenu,
@@ -60,7 +60,7 @@ export default function ClassesPage() {
     setMounted(true);
   }, []);
 
-  // Form State
+
   const [formData, setFormData] = useState({
     name: "",
     section: "",
@@ -120,13 +120,13 @@ export default function ClassesPage() {
     }
   };
 
-  const filteredClasses = classes.filter(cls => 
+  const filteredClasses = classes.filter(cls =>
     cls.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cls.section.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cls.teacher?.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Analytics Calculations
+
   const stats = [
     { title: "Total Classes", value: classes.length, icon: BookOpen, color: "from-blue-600 to-indigo-600" },
     { title: "Total Sections", value: classes.reduce((acc, curr) => acc + 1, 0), icon: Layout, color: "from-emerald-500 to-teal-500" },
@@ -160,7 +160,7 @@ export default function ClassesPage() {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Header */}
+
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-400">
@@ -170,7 +170,7 @@ export default function ClassesPage() {
             Organize academic classes, sections, and teacher assignments.
           </p>
         </div>
-        <Button 
+        <Button
           onClick={() => setIsAddModalOpen(true)}
           className="rounded-2xl px-6 py-6 h-auto bg-primary hover:bg-primary/90 shadow-xl shadow-primary/20 transition-all hover:scale-105"
         >
@@ -179,8 +179,8 @@ export default function ClassesPage() {
         </Button>
       </div>
 
-      {/* Stats Cards */}
-      <motion.div 
+
+      <motion.div
         variants={container}
         initial="hidden"
         animate="show"
@@ -206,9 +206,9 @@ export default function ClassesPage() {
         ))}
       </motion.div>
 
-      {/* Main Content Grid */}
+
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        {/* Table Section */}
+
         <Card className="xl:col-span-2 border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] overflow-hidden bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl">
           <CardHeader className="p-8 border-b border-zinc-100 dark:border-zinc-800/50">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -218,8 +218,8 @@ export default function ClassesPage() {
               </div>
               <div className="relative w-full sm:w-72">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
-                <Input 
-                  placeholder="Search class or teacher..." 
+                <Input
+                  placeholder="Search class or teacher..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-11 h-12 bg-zinc-50 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-2xl focus:ring-primary/20"
@@ -242,7 +242,7 @@ export default function ClassesPage() {
                 <TableBody>
                   <AnimatePresence mode="popLayout">
                     {filteredClasses.map((cls) => (
-                      <motion.tr 
+                      <motion.tr
                         layout
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -271,13 +271,13 @@ export default function ClassesPage() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                             <div className="w-full max-w-[100px] h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                               <div 
-                                 className="h-full bg-primary" 
-                                 style={{ width: `${(cls.studentCount / cls.capacity) * 100}%` }}
-                               />
-                             </div>
-                             <span className="text-xs font-bold text-zinc-500">{cls.studentCount}</span>
+                            <div className="w-full max-w-[100px] h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-primary"
+                                style={{ width: `${(cls.studentCount / cls.capacity) * 100}%` }}
+                              />
+                            </div>
+                            <span className="text-xs font-bold text-zinc-500">{cls.studentCount}</span>
                           </div>
                         </TableCell>
                         <TableCell className="font-medium text-zinc-500">{cls.capacity}</TableCell>
@@ -297,7 +297,7 @@ export default function ClassesPage() {
                                 <Edit3 className="w-4 h-4 mr-2" /> Edit Class
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
-                              <DropdownMenuItem 
+                              <DropdownMenuItem
                                 onClick={() => handleDeleteClass(cls._id)}
                                 className="rounded-xl px-3 py-2 cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30"
                               >
@@ -315,7 +315,7 @@ export default function ClassesPage() {
           </CardContent>
         </Card>
 
-        {/* Charts & Timetable */}
+
         <div className="space-y-8">
           <Card className="border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2rem] bg-white dark:bg-zinc-900">
             <CardHeader>
@@ -329,7 +329,7 @@ export default function ClassesPage() {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#88888820" />
                     <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
                     <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                    <Tooltip 
+                    <Tooltip
                       contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                       cursor={{ fill: 'rgba(0,0,0,0.05)' }}
                     />
@@ -368,7 +368,7 @@ export default function ClassesPage() {
         </div>
       </div>
 
-      {/* Add Class Modal */}
+
       <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
         <DialogContent className="sm:max-w-[500px] rounded-[2rem] p-8">
           <DialogHeader className="mb-6">
@@ -379,23 +379,23 @@ export default function ClassesPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name" className="font-bold">Class Name</Label>
-                <Input 
-                  id="name" 
-                  placeholder="e.g. Grade 10" 
+                <Input
+                  id="name"
+                  placeholder="e.g. Grade 10"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  required 
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
                   className="rounded-xl h-11"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="section" className="font-bold">Section</Label>
-                <Input 
-                  id="section" 
-                  placeholder="e.g. A" 
+                <Input
+                  id="section"
+                  placeholder="e.g. A"
                   value={formData.section}
-                  onChange={(e) => setFormData({...formData, section: e.target.value})}
-                  required 
+                  onChange={(e) => setFormData({ ...formData, section: e.target.value })}
+                  required
                   className="rounded-xl h-11"
                 />
               </div>
@@ -403,21 +403,21 @@ export default function ClassesPage() {
 
             <div className="space-y-2">
               <Label htmlFor="capacity" className="font-bold">Maximum Capacity</Label>
-              <Input 
-                id="capacity" 
-                type="number" 
-                placeholder="40" 
+              <Input
+                id="capacity"
+                type="number"
+                placeholder="40"
                 value={formData.capacity}
-                onChange={(e) => setFormData({...formData, capacity: e.target.value})}
-                required 
+                onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+                required
                 className="rounded-xl h-11"
               />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="teacher" className="font-bold">Lead Teacher</Label>
-              <Select 
-                onValueChange={(val) => setFormData({...formData, teacher: val})}
+              <Select
+                onValueChange={(val) => setFormData({ ...formData, teacher: val })}
                 value={formData.teacher}
               >
                 <SelectTrigger className="rounded-xl h-11">
@@ -433,27 +433,27 @@ export default function ClassesPage() {
 
             <div className="space-y-2">
               <Label htmlFor="subjects" className="font-bold">Subjects (Comma separated)</Label>
-              <Input 
-                id="subjects" 
-                placeholder="Math, Science, English..." 
+              <Input
+                id="subjects"
+                placeholder="Math, Science, English..."
                 value={formData.subjects}
-                onChange={(e) => setFormData({...formData, subjects: e.target.value})}
-                required 
+                onChange={(e) => setFormData({ ...formData, subjects: e.target.value })}
+                required
                 className="rounded-xl h-11"
               />
             </div>
 
             <DialogFooter className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800">
-              <Button 
-                type="button" 
-                variant="ghost" 
+              <Button
+                type="button"
+                variant="ghost"
                 onClick={() => setIsAddModalOpen(false)}
                 className="rounded-xl h-11 px-6 font-bold"
               >
                 Cancel
               </Button>
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="rounded-xl h-11 px-8 font-bold bg-primary shadow-lg shadow-primary/20"
               >

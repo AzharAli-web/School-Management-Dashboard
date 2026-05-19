@@ -78,7 +78,7 @@ export default function TeachersPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Teachers</h1>
@@ -95,7 +95,6 @@ export default function TeachersPage() {
         </Button>
       </div>
 
-      {/* Table Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -42,7 +42,6 @@ export default function TeacherModal({ isOpen, onClose, teacherToEdit, onSuccess
     e.preventDefault();
     setLoading(true);
 
-    // Convert comma-separated classes to array
     const payload = {
       ...formData,
       assignedClasses: formData.assignedClasses

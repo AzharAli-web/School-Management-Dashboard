@@ -20,13 +20,13 @@ export default function ProfilePage() {
   };
 
   return (
-    <motion.div 
-      variants={container} 
-      initial="hidden" 
-      animate="visible" 
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="visible"
       className="mx-auto max-w-4xl space-y-8 pb-12"
     >
-      {/* Header section */}
+
       <motion.div variants={item} className="flex flex-col md:flex-row items-center gap-8 bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm shadow-zinc-200/50 dark:shadow-none">
         <div className="relative group">
           <Avatar className="h-32 w-32 border-4 border-white dark:border-zinc-800 shadow-xl">
@@ -39,7 +39,7 @@ export default function ProfilePage() {
             <Camera className="w-4 h-4" />
           </button>
         </div>
-        
+
         <div className="flex-1 text-center md:text-left space-y-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
             {user?.name || "User Profile"}
@@ -62,7 +62,7 @@ export default function ProfilePage() {
         </Button>
       </motion.div>
 
-      {/* Details section */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <motion.div variants={item} className="md:col-span-2 space-y-6">
           <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">

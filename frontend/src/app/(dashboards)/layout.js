@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }) {
 
   useEffect(() => {
     setMounted(true);
-    initialize(); // Sync token from localStorage
+    initialize();
   }, [initialize]);
 
   useEffect(() => {
